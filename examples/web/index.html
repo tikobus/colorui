@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>color-ui · Web 组件全览</title>
+  <link rel="stylesheet" href="../../dist/color-ui.css">
+  <style>
+    /* 页面自身辅助样式（非 color-ui 部分） */
+    body { max-width: 780px; margin: 0 auto; }
+    .verify-nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; flex-wrap: wrap; gap: 4px 10px;
+      padding: 8px 12px; font-size: 12px;
+      background: rgba(255,255,255,.92); backdrop-filter: blur(8px);
+      border-bottom: 1px solid #eee;
+    }
+    .verify-nav a { color: #0081ff; text-decoration: none; }
+    .demo-box { background: #f1f1f1; padding: 16px; }
+    .demo-note { font-size: 12px; color: #8799a3; padding: 8px 16px; }
+    .anim-target { width: 100px; height: 100px; margin: 16px auto; border-radius: 8px; }
+  </style>
+</head>
+<body>
+
+<!-- ==================== 头部 ==================== -->
+<div class="bg-gradual-blue" style="padding: 40px 16px 32px;">
+  <h1 style="color:#fff;margin:0;font-size:24px;">color-ui · Web 组件全览</h1>
+  <p style="color:#fff;opacity:.85;margin:8px 0 0;">
+    引用 dist/color-ui.css —— 布局/背景/文本/图标/按钮/标签/头像/进度/阴影/加载/操作条/列表/卡片/表单/时间轴/聊天/轮播/步骤条/导航栏/弹窗/动画
+  </p>
+</div>
+
+<nav class="verify-nav">
+  <a href="#c-color">颜色</a><a href="#c-gradual">渐变</a><a href="#c-text">文本</a>
+  <a href="#c-icon">图标</a><a href="#c-btn">按钮</a><a href="#c-tag">标签</a>
+  <a href="#c-avatar">头像</a><a href="#c-progress">进度</a><a href="#c-shadow">阴影</a>
+  <a href="#c-load">加载</a><a href="#c-bar">操作条</a><a href="#c-list">列表</a>
+  <a href="#c-card">卡片</a><a href="#c-form">表单</a><a href="#c-timeline">时间轴</a>
+  <a href="#c-chat">聊天</a><a href="#c-swiper">轮播</a><a href="#c-steps">步骤条</a>
+  <a href="#c-nav">导航栏</a><a href="#c-modal">弹窗</a><a href="#c-anim">动画</a>
+</nav>
+
+<!-- ==================== 01 主题色 ==================== -->
+<div class="cu-bar bg-white solid-bottom margin-top" id="c-color">
+  <div class="action"><i class="cuIcon-title text-blue"></i> 01 · 主题色（15 色，:root CSS 变量）</div>
+</div>
+<div class="demo-box">
+  <div class="flex flex-wrap">
+    <div class="padding-xs radius bg-red margin-xs">red</div>
+    <div class="padding-xs radius bg-orange margin-xs">orange</div>
+    <div class="padding-xs radius bg-yellow margin-xs">yellow</div>
+    <div class="padding-xs radius bg-olive margin-xs">olive</div>
+    <div class="padding-xs radius bg-green margin-xs">green</div>
+    <div class="padding-xs radius bg-cyan margin-xs">cyan</div>
+    <div class="padding-xs radius bg-blue margin-xs">blue</div>
+    <div class="padding-xs radius bg-purple margin-xs">purple</div>
+    <div class="padding-xs radius bg-mauve margin-xs">mauve</div>
+    <div class="padding-xs radius bg-pink margin-xs">pink</div>
+    <div class="padding-xs radius bg-brown margin-xs">brown</div>
+    <div class="padding-xs radius bg-grey margin-xs">grey</div>
+    <div class="padding-xs radius bg-gray margin-xs">gray</div>
+    <div class="padding-xs radius bg-black margin-xs">black</div>
+    <div class="padding-xs radius bg-white margin-xs solid">white</div>
+  </div>
+  <div class="flex flex-wrap margin-top">
+    <div class="padding-xs radius bg-red light margin-xs">light</div>
+    <div class="padding-xs radius bg-blue light margin-xs">light</div>
+    <div class="padding-xs radius bg-green light margin-xs">light</div>
+    <div class="padding-xs radius bg-pink light margin-xs">light</div>
+    <div class="padding-xs radius bg-orange light margin-xs">light</div>
+  </div>
+  <div class="flex flex-wrap margin-top">
+    <div class="padding-xs radius line-red margin-xs">line</div>
+    <div class="padding-xs radius line-blue margin-xs">line</div>
+    <div class="padding-xs radius line-green margin-xs">line</div>
+  </div>
+</div>
+
+<!-- ==================== 02 渐变背景 ==================== -->
+<div class="cu-bar bg-white solid-bottom margin-top" id="c-gradual">
+  <div class="action"><i class="cuIcon-title text-blue"></i> 02 · 渐变背景（bg-gradual-*）</div>
+</div>
+<div class="demo-box">
+  <div class="flex flex-wrap">
+    <div class="padding bg-gradual-red margin-xs radius">gradual-red</div>
+    <div class="padding bg-gradual-orange margin-xs radius">gradual-orange</div>
+    <div class="padding bg-gradual-green margin-xs radius">gradual-green</div>
+    <div class="padding bg-gradual-blue margin-xs radius">gradual-blue</div>
+    <div class="padding bg-gradual-pink margin-xs radius">gradual-pink</div>
+    <div class="padding bg-gradual-purple margin-xs radius">gradual-purple</div>
+  </div>
+</div>
+
+<!-- ==================== 03 文本 ==================== -->
+<div class="cu-bar bg-white solid-bottom margin-top" id="c-text">
+  <div class="action"><i class="cuIcon-title text-blue"></i> 03 · 文本</div>
+</div>
+<div class="bg-white padding">
+  <div class="text-cut">text-cut 单行截断：这是一段很长的文本用来演示文本截断效果，超出容器宽度的部分将被省略号截断掉不显示</div>
+  <div class="text-ABC margin-top-sm">text-ABC 首字母缩放 Abc ColorUi Css Library</div>
+  <div class="margin-top-sm">
+    <span class="text-price">80.00</span>
+    <span class="text-price margin-left">240.00</span>
+  </div>
+  <div class="margin-top-sm">
+    <span class="text-bold">加粗</span>
+    <span class="text-red margin-left-sm">红色</span>
+    <span class="text-blue margin-left-sm">蓝色</span>
+    <span class="text-shadow margin-left-sm">阴影</span>
+    <span class="text-shadow text-red margin-left-sm">彩色文字阴影</span>
+  </div>
+  <div class="margin-top-sm">
+    <span class="text-xs">xs 20px</span>
+    <span class="text-sm margin-left">sm 24px</span>
+    <span class="text-df margin-left">df 28px</span>
+    <span class="text-lg margin-left">lg 32px</span>
+    <span class="text-xl margin-left">xl 36px</span>
+    <span class="text-xxl margin-left">xxl 44px</span>
+  </div>
+  <div class="bg-gray padding-sm radius margin-top-sm text-sm text-grey">
+    text-content / text-grey / text-sm 组合
+  </div>
+</div>
+
+<!-- ==================== 04 图标 ==================== -->
+<div class="cu-bar bg-white solid-bottom margin-top" id="c-icon">
+  <div class="action"><i class="cuIcon-title text-blue"></i> 04 · 图标字体（cuIcon-*，base64 WOFF）</div>
+</div>
+<div class="bg-white padding">
+  <div class="grid col-4" style="text-align:center;font-size:28px;">
+    <div class="padding-sm"><i class="cuIcon-emoji text-yellow"></i><div class="text-sm text-grey margin-top-xs">emoji</div></div>
+    <div class="padding-sm"><i class="cuIcon-emojifill text-yellow"></i><div class="text-sm text-grey margin-top-xs">emojifill</div></div>
+    <div class="padding-sm"><i class="cuIcon-favor text-red"></i><div class="text-sm text-grey margin-top-xs">favor</div></div>
+    <div class="padding-sm"><i class="cuIcon-favorfill text-red"></i><div class="text-sm text-grey margin-top-xs">favorfill</div></div>
+    <div class="padding-sm"><i class="cuIcon-location text-blue"></i><div class="text-sm text-grey margin-top-xs">location</div></div>
+    <div class="padding-sm"><i class="cuIcon-locationfill text-blue"></i><div class="text-sm text-grey margin-top-xs">locationfill</div></div>
+    <div class="padding-sm"><i class="cuIcon-phone text-green"></i><div class="text-sm text-grey margin-top-xs">phone</div></div>
+    <div class="padding-sm"><i class="cuIcon-search text-grey"></i><div class="text-sm text-grey margin-top-xs">search</div></div>
+    <div class="padding-sm"><i class="cuIcon-check text-olive"></i><div class="text-sm text-grey margin-top-xs">check</div></div>
+    <div class="padding-sm"><i class="cuIcon-close text-pink"></i><div class="text-sm text-grey margin-top-xs">close</div></div>
+    <div class="padding-sm"><i class="cuIcon-info text-cyan"></i><div class="text-sm text-grey margin-top-xs">info</div></div>
+    <div class="padding-sm"><i class="cuIcon-warn text-orange"></i><div class="text-sm text-grey margin-top-xs">warn</div></div>
+    <div class="padding-sm"><i class="cuIcon-notice text-purple"></i><div class="text-sm text-grey margin-top-xs">notice</div></div>
+    <div class="padding-sm"><i class="cuIcon-noticefill text-purple"></i><div class="text-sm text-grey margin-top-xs">noticefill</div></div>
+    <div class="padding-sm"><i class="cuIcon-people text-mauve"></i><div class="text-sm text-grey margin-top-xs">people</div></div>
+    <div class="padding-sm"><i class="cuIcon-peoplefill text-mauve"></i><div class="text-sm text-grey margin-top-xs">peoplefill</div></div>
+    <div class="padding-sm"><i class="cuIcon-home text-brown"></i><div class="text-sm text-grey margin-top-xs">home</div></div>
+    <div class="padding-sm"><i class="cuIcon-homefill text-brown"></i><div class="text-sm text-grey margin-top-xs">homefill</div></div>
+    <div class="padding-sm"><i class="cuIcon-cart text-red"></i><div class="text-sm text-grey margin-top-xs">cart</div></div>
+    <div class="padding-sm"><i class="cuIcon-shop text-orange"></i><div class="text-sm text-grey margin-top-xs">shop</div></div>
+    <div class="padding-sm"><i class="cuIcon-camera text-grey"></i><div class="text-sm text-grey margin-top-xs">camera</div></div>
+    <div class="padding-sm"><i class="cuIcon-cameraadd text-grey"></i><div class="text-sm text-grey margin-top-xs">cameraadd</div></div>
+    <div class="padding-sm"><i class="cuIcon-loading iconfont-spin text-blue"></i><div class="text-sm text-grey margin-top-xs">loading 旋转</div></div>
+    <div class="padding-sm"><i class="cuIcon-refresh iconfont-spin text-green"></i><div class="text-sm text-grey margin-top-xs">refresh</div></div>
+    <div class="padding-sm"><i class="cuIcon-more text-grey"></i><div class="text-sm text-grey margin-top-xs">more</div></div>
+    <div class="padding-sm"><i class="cuIcon-scan text-cyan"></i><div class="text-sm text-grey margin-top-xs">scan</div></div>
+    <div class="padding-sm"><i class="cuIcon-send text-blue"></i><div class="text-sm text-grey margin-top-xs">send</div></div>
+    <div class="padding-sm"><i class="cuIcon-appreciate text-red"></i><div class="text-sm text-grey margin-top-xs">appreciate</div></div>
+    <div class="padding-sm"><i class="cuIcon-appreciatefill text-red"></i><div class="text-sm text-grey margin-top-xs">appreciatefill</div></div>
+    <div class="padding-sm"><i class="cuIcon-attention text-blue"></i><div class="text-sm text-grey margin-top-xs">attention</div></div>
+    <div class="padding-sm"><i class="cuIcon-attentionfill text-blue"></i><div class="text-sm text-grey margin-top-xs">attentionfill</div></div>
+    <div class="padding-sm"><i class="cuIcon-add text-green"></i><div class="text-sm text-grey margin-top-xs">add</div></div>
+    <div class="padding-sm"><i class="cuIcon-back text-grey"></i><div class="text-sm text-grey margin-top-xs">back</div></div>
+    <div class="padding-sm"><i class="cuIcon-github text-black"></i><div class="text-sm text-grey margin-top-xs">github</div></div>
+    <div class="padding-sm"><i class="cuIcon-redpacket_fill text-red"></i><div class="text-sm text-grey margin-top-xs">redpacket</div></div>
+    <div class="padding-sm"><i class="cuIcon-evaluate_fill text-orange"></i><div class="text-sm text-grey margin-top-xs">evaluate</div></div>
+    <div class="padding-sm"><i class="cuIcon-cardboardfill text-cyan"></i><div class="text-sm text-grey margin-top-xs">cardboard</div></div>
+    <div class="padding-sm"><i class="cuIcon-recharge text-yellow"></i><div class="text-sm text-grey margin-top-xs">recharge</div></div>
+    <div class="padding-sm"><i class="cuIcon-activity text-pink"></i><div class="text-sm text-grey margin-top-xs">activity</div></div>
+    <div class="padding-sm"><i class="cuIcon-album text-mauve"></i><div class="text-sm text-grey margin-top-xs">album</div></div>
+  </div>
+</div>
+
+<!-- ==================== 05 按钮 ==================== -->
+<div class="cu-bar bg-white solid-bottom margin-top" id="c-btn">
+  <div class="action"><i class="cuIcon-title text-blue"></i> 05 · 按钮（cu-btn）</div>
+</div>
+<div class="demo-box">
+  <div class="flex flex-wrap">
+    <button class="cu-btn bg-red">默认</button>
+    <button class="cu-btn bg-blue sm margin-left">小 sm</button>
+    <button class="cu-btn bg-green lg margin-left">大 lg</button>
+    <button class="cu-btn round bg-gradual-orange shadow-blur margin-left">渐变圆角</button>
+    <button class="cu-btn line-blue text-blue margin-left">描边</button>
+    <button class="cu-btn round line-pink text-pink margin-left">圆角描边</button>
+    <button class="cu-btn bg-white line-black margin-left">取消</button>
+    <button class="cu-btn cuIcon-add bg-green shadow margin-left">图标</button>
+    <button class="cu-btn cuIcon-loading bg-grey margin-left" disabled>禁用</button>
+  </div>
+  <button class="cu-btn block bg-gradual-blue lg margin-top shadow-blur">block 通栏按钮</button>
+  <div class="flex margin-top">
+    <button class="cu-btn flex-sub bg-grey">三等分</button>
+    <button class="cu-btn flex-sub bg-blue margin-lr-sm">三等分</button>
+    <button class="cu-btn flex-sub bg-grey">三等分</button>
+  </div>
+</div>
+
+<!-- ==================== 06 标签 ==================== -->
+<div class="cu-bar bg-white solid-bottom margin-top" id="c-tag">
+  <div class="action"><i class="cuIcon-title text-blue"></i> 06 · 标签（cu-tag）</div>
+</div>
+<div class="demo-box">
+  <div class="flex flex-wrap align-center">
+    <span class="cu-tag bg-red">默认</span>
+    <span class="cu-tag bg-blue sm margin-left">sm</span>
+    <span class="cu-tag bg-green round margin-left">round</span>
+    <span class="cu-tag bg-orange radius margin-left">radius</span>
+    <span class="cu-tag line-cyan margin-left">描边</span>
+    <span class="cu-tag bg-red light round margin-left">light</span>
+    <span class="cu-tag bg-gradual-pink margin-left">渐变</span>
+    <button class="cu-btn bg-blue sm round margin-left">
+      徽章 <span class="cu-tag badge bg-red">99+</span>
+    </button>
+    <span class="cu-capsule radius margin-left">
+      <span class="cu-tag bg-blue">胶囊</span>
+      <span class="cu-tag line-blue">胶囊</span>
+    </span>
+  </div>
+</div>
+
+<!-- ==================== 07 头像 ==================== -->
+<div class="cu-bar bg-white solid-bottom margin-top" id="c-avatar">
+  <div class="action"><i class="cuIcon-title text-blue"></i> 07 · 头像（cu-avatar）</div>
+</div>
+<div class="demo-box">
+  <div class="flex flex-wrap align-center">
+    <span class="cu-avatar round sm bg-red">小</span>
+    <span class="cu-avatar round bg-blue margin-left">中</span>
+    <span class="cu-avatar round lg bg-green margin-left">大</span>
+    <span class="cu-avatar radius bg-orange margin-left">方</span>
+    <span class="cu-avatar round bg-gradual-pink margin-left icon"><i class="cuIcon-peoplefill"></i></span>
+    <span class="cu-avatar round lg bg-gradual-blue margin-left icon"><i class="cuIcon-peoplefill"></i></span>
+    <div class="cu-avatar-group margin-left">
+      <span class="cu-avatar round sm bg-red">羽</span>
+      <span class="cu-avatar round sm bg-cyan" style="margin-left:-20px;">依</span>
+      <span class="cu-avatar round sm bg-blue" style="margin-left:-20px;">文</span>
+      <span class="cu-avatar round sm bg-grey" style="margin-left:-20px;">+</span>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 08 进度条 ==================== -->
+<div class="cu-bar bg-white solid-bottom margin-top" id="c-progress">
+  <div class="action"><i class="cuIcon-title text-blue"></i> 08 · 进度条（cu-progress）</div>
+</div>
+<div class="bg-white padding">
+  <div class="cu-progress radius striped">
+    <div class="bg-red" style="width: 32%;">32%</div>
+  </div>
+  <div class="cu-progress radius striped active margin-top">
+    <div class="bg-gradual-blue" style="width: 61.8%;">61.8%</div>
+  </div>
+  <div class="cu-progress radius margin-top">
+    <div class="bg-green" style="width: 88%;">88%</div>
+  </div>
+</div>
+
+<!-- ==================== 09 阴影 ==================== -->
+<div class="cu-bar bg-white solid-bottom margin-top" id="c-shadow">
+  <div class="action"><i class="cuIcon-title text-blue"></i> 09 · 阴影（--ShadowSize 变量）</div>
+</div>
+<div class="demo-box">
+  <div class="flex flex-wrap">
+    <div class="bg-white padding radius shadow margin-xs">shadow</div>
+    <div class="bg-white padding radius shadow-blur margin-xs">shadow-blur</div>
+    <div class="bg-white padding radius shadow-warp margin-xs">shadow-warp 翘边</div>
+  </div>
+  <div class="flex flex-wrap margin-top">
+    <div class="bg-white padding radius shadow shadow-red margin-xs">shadow shadow-red</div>
+    <div class="bg-white padding radius shadow shadow-blue margin-xs">shadow shadow-blue</div>
+    <div class="bg-white padding radius shadow shadow-green margin-xs">shadow shadow-green</div>
+    <div class="bg-white padding radius shadow shadow-orange margin-xs">shadow shadow-orange</div>
+  </div>
+</div>
+
+<!-- ==================== 10 加载 ==================== -->
+<div class="cu-bar bg-white solid-bottom margin-top" id="c-load">
+  <div class="action"><i class="cuIcon-title text-blue"></i> 10 · 加载（cu-load）</div>
+</div>
+<div class="bg-white">
+  <div class="cu-load bg-blue loading"><span>加载中...</span></div>
+  <div class="cu-load bg-grey loading"><span>加载中...</span></div>
+  <div class="cu-load bg-grey over"><span>没有更多数据</span></div>
+  <div class="cu-load bg-red erro"><span>加载失败</span></div>
+</div>
+<div class="demo-box flex align-center">
+  <span class="cuIcon-loading iconfont-spin text-blue text-xl"></span>
+  <span class="text-grey margin-left-sm">cuIcon-loading + iconfont-spin</span>
+  <span class="cuIcon-refresh iconfont-pulse text-green text-xl margin-left"></span>
+  <span class="text-grey margin-left-sm">iconfont-pulse</span>
+</div>
+
+<!-- ==================== 11 操作条 ==================== -->
+<div class="cu-bar bg-white solid-bottom margin-top" id="c-bar">
+  <div class="action"><i class="cuIcon-title text-blue"></i> 11 · 操作条（cu-bar）</div>
+</div>
+<div class="bg-white">
+  <div class="cu-bar solid-bottom">
+    <div class="action"><i class="cuIcon-title text-orange"></i> 标题</div>
+    <div class="action text-grey text-sm">右侧说明</div>
+  </div>
+  <div class="cu-bar solid-bottom">
+    <div class="action border-title"><span class="text-xl text-bold">border-title 缩放标题</span>
+      <div class="text-ABC text-gray text-sm margin-left-sm">Description</div>
+    </div>
+  </div>
+  <div class="cu-bar solid-bottom">
+    <div class="action sub-title"><span class="text-xl text-bold text-blue">sub-title 副标题</span>
+      <div class="text-gray text-sm">副标题说明文字</div>
+    </div>
+  </div>
+  <div class="cu-bar solid-bottom">
+    <div class="action text-bold text-xl">粗体标题 action</div>
+    <div class="action"><button class="cu-btn line-blue text-blue sm">操作按钮</button></div>
+  </div>
+  <div class="cu-bar bg-white">
+    <div class="search-form">
+      <i class="cuIcon-search"></i>
+      <input placeholder="搜索图片、文章、视频">
+    </div>
+    <div class="action"><button class="cu-btn bg-green shadow-blur round">搜索</button></div>
+  </div>
+  <div class="cu-bar input">
+    <div class="action"><i class="cuIcon-roundaddfill text-grey"></i></div>
+    <input placeholder="输入内容..." style="flex:1;">
+    <div class="action"><span class="cuIcon-emojifill text-grey"></span><span class="cuIcon-recordfill text-grey margin-left-sm"></span></div>
+    <button class="cu-btn bg-green shadow-blur">发送</button>
+  </div>
+  <div class="cu-bar btn-group">
+    <button class="cu-btn bg-orange lg flex-sub">保存</button>
+    <button class="cu-btn bg-blue lg flex-sub margin-left">提交</button>
+  </div>
+  <div class="cu-bar tabbar bg-white margin-top solid-top">
+    <div class="action text-green"><div class="cuIcon-homefill"></div> 首页</div>
+    <div class="action text-gray"><div class="cuIcon-similar"></div> 分类</div>
+    <div class="action text-gray add-action">
+      <button class="cu-btn cuIcon-add bg-green shadow"></button>
+      发布
+    </div>
+    <div class="action text-gray"><div class="cuIcon-cart"><span class="cu-tag badge bg-red">99</span></div> 购物车</div>
+    <div class="action text-gray"><div class="cuIcon-my"></div> 我的</div>
+  </div>
+</div>
+
+<!-- ==================== 12 列表 ==================== -->
+<div class="cu-bar bg-white solid-bottom margin-top" id="c-list">
+  <div class="action"><i class="cuIcon-title text-blue"></i> 12 · 列表（cu-list）</div>
+</div>
+<div class="bg-white">
+  <div class="cu-list menu sm-border">
+    <div class="cu-item">
+      <div class="content"><i class="cuIcon-emoji text-blue"></i><span class="text-grey">普通列表项</span></div>
+      <div class="action"><span class="cu-tag bg-red badge">5</span><i class="cuIcon-right text-grey"></i></div>
+    </div>
+    <div class="cu-item">
+      <div class="content"><i class="cuIcon-favorfill text-red"></i><span class="text-grey">带徽章</span></div>
+      <div class="action"><span class="text-grey text-sm">说明文字</span></div>
+    </div>
+    <div class="cu-item arrow">
+      <div class="content"><i class="cuIcon-location text-green"></i><span class="text-grey">箭头列表项</span></div>
+    </div>
+  </div>
+  <div class="cu-list menu-avatar">
+    <div class="cu-item">
+      <span class="cu-avatar round lg bg-red">文</span>
+      <div class="content">
+        <div class="text-grey">文晓港</div>
+        <div class="text-gray text-sm flex">
+          <i class="cuIcon-infofill text-red margin-right-xs"></i> 消灭零回复
+        </div>
+      </div>
+      <div class="action"><span class="cu-tag round bg-orange light">文章</span></div>
+    </div>
+    <div class="cu-item">
+      <span class="cu-avatar round lg bg-gradual-blue icon"><i class="cuIcon-peoplefill"></i></span>
+      <div class="content">
+        <div class="text-grey">ColorUI 用户</div>
+        <div class="text-gray text-sm flex"><i class="cuIcon-attentionfill text-blue margin-right-xs"></i> 这是列表副标题</div>
+      </div>
+      <div class="action"><span class="cu-tag round bg-green light sm">在线</span></div>
+    </div>
+  </div>
+  <div class="cu-list grid col-4 no-border">
+    <div class="cu-item"><div class="cuIcon-cardboardfill text-blue"></div><span class="text-grey">卡片</span></div>
+    <div class="cu-item"><div class="cuIcon-recordfill text-cyan"></div><span class="text-grey">记录</span></div>
+    <div class="cu-item"><div class="cuIcon-picfill text-purple"></div><span class="text-grey">图片</span></div>
+    <div class="cu-item"><div class="cuIcon-sound text-mauve"></div><span class="text-grey">声音</span></div>
+  </div>
+</div>
+
+<!-- ==================== 13 卡片 ==================== -->
+<div class="cu-bar bg-white solid-bottom margin-top" id="c-card">
+  <div class="action"><i class="cuIcon-title text-blue"></i> 13 · 卡片（cu-card）</div>
+</div>
+<div class="demo-box">
+  <div class="cu-card dynamic no-card">
+    <div class="cu-item shadow">
+      <div class="cu-list menu-avatar">
+        <div class="cu-item">
+          <span class="cu-avatar round lg bg-red">文</span>
+          <div class="content"><div class="text-grey">文晓港</div>
+            <div class="text-gray text-sm">2026-10-08 16:20</div>
+          </div>
+          <div class="action"><span class="cu-tag round bg-orange light">文章</span></div>
+        </div>
+      </div>
+      <div class="text-content padding">这是 card dynamic 动态卡片，示例文本内容。ColorUI 的卡片组件可以包含头像、正文、九宫格图片与评论。</div>
+      <div class="grid col-3 grid-square flex-sub padding-lr">
+        <div class="bg-img" style="background-image:url('https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg');"></div>
+        <div class="bg-img" style="background-image:url('https://ossweb-img.qq.com/images/lol/web201310/skin/big10002.jpg');"></div>
+        <div class="bg-img" style="background-image:url('https://ossweb-img.qq.com/images/lol/web201310/skin/big10003.jpg');"></div>
+      </div>
+      <div class="cu-list menu-avatar comment">
+        <div class="cu-item">
+          <span class="cu-avatar round sm bg-blue">客</span>
+          <div class="content"><div class="text-grey">游客</div>
+            <div class="text-gray text-sm text-content">基于 ColorUI 的评论区域</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cu-card case margin-top">
+    <div class="cu-item shadow">
+      <div class="bg-img bg-mask flex align-end" style="background-image:url('https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg');height:180px;">
+        <div class="cu-bar bg-shadeBottom" style="width:100%;">
+          <div class="content text-white">这是 card case 图文卡片</div>
+          <div class="action"><span class="cu-tag bg-blue">标签</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cu-card article margin-top">
+    <div class="cu-item shadow">
+      <div class="title"><div class="text-cut">这是 article 文章卡片的无缝图片示例</div></div>
+      <div class="content">
+        <div class="bg-img" style="background-image:url('https://ossweb-img.qq.com/images/lol/web201310/skin/big10005.jpg');"></div>
+        <p class="text-grey margin-top-sm">这是文章卡片的内容区域，示例文字段落。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 14 表单 ==================== -->
+<div class="cu-bar bg-white solid-bottom margin-top" id="c-form">
+  <div class="action"><i class="cuIcon-title text-blue"></i> 14 · 表单（cu-form-group）</div>
+</div>
+<div class="bg-white">
+  <div class="cu-form-group margin-top">
+    <div class="title">邮件</div>
+    <input placeholder="请输入邮箱地址" name="input">
+  </div>
+  <div class="cu-form-group">
+    <div class="title">输入框</div>
+    <input placeholder="输入框带右侧图标" name="input">
+    <i class="cuIcon-writefill text-grey"></i>
+  </div>
+  <div class="cu-form-group align-start">
+    <div class="title">文本域</div>
+    <textarea placeholder="多行文本域" maxlength="-1"></textarea>
+  </div>
+  <div class="cu-form-group">
+    <div class="title">开关</div>
+    <switch class="blue" checked></switch>
+  </div>
+</div>
+<p class="demo-note">注：switch / checkbox / radio / picker 的换肤依赖小程序原生组件内部类（.wx-*），Web 端为惰性规则，此处仅展示布局结构。</p>
+
+<!-- ==================== 15 时间轴 ==================== -->
+<div class="cu-bar bg-white solid-bottom margin-top" id="c-timeline">
+  <div class="action"><i class="cuIcon-title text-blue"></i> 15 · 时间轴（cu-timeline）</div>
+</div>
+<div class="bg-white padding">
+  <div class="cu-timeline">
+    <div class="cu-time">昨天</div>
+    <div class="cu-item cur text-blue">
+      <i class="cuIcon-noticefill"></i>
+      <div class="content bg-blue shadow-blur">
+        <div>这是第一条时间轴内容，默认第一项带 cur 高亮</div>
+      </div>
+    </div>
+    <div class="cu-item text-grey">
+      <i class="cuIcon-attentionforbidfill"></i>
+      <div class="content bg-grey">这是第二条时间轴内容</div>
+    </div>
+    <div class="cu-time margin-top">今天</div>
+    <div class="cu-item text-red">
+      <i class="cuIcon-evaluate_fill"></i>
+      <div class="content bg-red shadow-blur">
+        <div>第三条，带彩色阴影</div>
+      </div>
+    </div>
+    <div class="cu-item text-green">
+      <i class="cuIcon-check"></i>
+      <div class="content bg-green">第四条时间轴内容</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 16 聊天 ==================== -->
+<div class="cu-bar bg-white solid-bottom margin-top" id="c-chat">
+  <div class="action"><i class="cuIcon-title text-blue"></i> 16 · 聊天（cu-chat）</div>
+</div>
+<div class="bg-white padding">
+  <div class="cu-chat">
+    <div class="cu-item self">
+      <div class="main">
+        <div class="content bg-green shadow">你好，这是自己发出的消息 self</div>
+      </div>
+      <span class="cu-avatar round bg-red">我</span>
+      <div class="date">2026-10-08 16:00</div>
+    </div>
+    <div class="cu-item">
+      <span class="cu-avatar round bg-blue">客</span>
+      <div class="main">
+        <div class="content shadow">你好！这是对方的消息，默认靠左</div>
+      </div>
+      <div class="date">2026-10-08 16:01</div>
+    </div>
+    <div class="cu-info round">对方撤回了一条消息</div>
+    <div class="cu-item">
+      <span class="cu-avatar round bg-gradual-pink icon"><i class="cuIcon-peoplefill"></i></span>
+      <div class="main">
+        <div class="content shadow">cu-info 是居中的系统提示</div>
+      </div>
+      <div class="date">2026-10-08 16:02</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 17 轮播 ==================== -->
+<div class="cu-bar bg-white solid-bottom margin-top" id="c-swiper">
+  <div class="action"><i class="cuIcon-title text-blue"></i> 17 · 轮播（card-swiper 静态结构）</div>
+</div>
+<div class="demo-box">
+  <div class="card-swiper square-dot" style="height: 180px;">
+    <div class="swiper-item cur">
+      <div class="bg-img shadow" style="background-image:url('https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg');height:100%;"></div>
+    </div>
+  </div>
+  <p class="demo-note">
+    注：swiper 原生滚动 / 指示点（.wx-swiper-dot）依赖小程序运行时，Web 端展示静态结构与样式；轮播交互可自行用 JS 实现。square-dot / round-dot 类在小程序端控制指示点形状。
+  </p>
+</div>
+
+<!-- ==================== 18 步骤条 ==================== -->
+<div class="cu-bar bg-white solid-bottom margin-top" id="c-steps">
+  <div class="action"><i class="cuIcon-title text-blue"></i> 18 · 步骤条（cu-steps）</div>
+</div>
+<div class="bg-white padding">
+  <div class="cu-steps">
+    <div class="cu-item cur text-blue"><i class="cuIcon-title"></i> 开始</div>
+    <div class="cu-item cur text-blue"><i class="cuIcon-upload"></i> 等待</div>
+    <div class="cu-item text-grey"><i class="cuIcon-selection"></i> 错误</div>
+    <div class="cu-item text-grey"><i class="cuIcon-roundcheckfill"></i> 完成</div>
+  </div>
+  <div class="cu-steps margin-top">
+    <div class="cu-item cur text-blue"><span class="num">1</span> 开始</div>
+    <div class="cu-item cur text-blue"><span class="num err">2</span> 错误</div>
+    <div class="cu-item text-grey"><span class="num">3</span> 进行</div>
+    <div class="cu-item text-grey"><span class="num">4</span> 结束</div>
+  </div>
+  <div class="cu-steps steps-arrow margin-top">
+    <div class="cu-item cur text-blue"><i class="cuIcon-title"></i> 箭头</div>
+    <div class="cu-item cur text-blue"><i class="cuIcon-upload"></i> 箭头</div>
+    <div class="cu-item text-grey"><i class="cuIcon-selection"></i> 箭头</div>
+  </div>
+  <div class="cu-steps steps-bottom margin-top padding-lr-xl">
+    <div class="cu-item cur text-blue padding-lr-xl"><i class="cuIcon-title"></i> 底部</div>
+    <div class="cu-item text-grey padding-lr-xl"><i class="cuIcon-selection"></i> 底部</div>
+    <div class="cu-item text-grey padding-lr-xl"><i class="cuIcon-roundcheckfill"></i> 底部</div>
+  </div>
+</div>
+
+<!-- ==================== 19 导航栏 ==================== -->
+<div class="cu-bar bg-white solid-bottom margin-top" id="c-nav">
+  <div class="action"><i class="cuIcon-title text-blue"></i> 19 · 自定义导航栏（cu-custom 结构）</div>
+</div>
+<div class="demo-box">
+  <div class="cu-custom" style="height:45px;">
+    <div class="cu-bar fixed bg-gradual-blue" style="position:relative;height:45px;">
+      <div class="action"><i class="cuIcon-back"></i> 返回</div>
+      <div class="content">导航栏标题</div>
+      <div class="action"><i class="cuIcon-more"></i></div>
+    </div>
+  </div>
+  <div class="cu-custom margin-top" style="height:45px;">
+    <div class="cu-bar fixed bg-gradual-pink" style="position:relative;height:45px;">
+      <div class="action border-custom">
+        <i class="cuIcon-back"></i><i class="cuIcon-homefill margin-left-sm"></i>
+      </div>
+      <div class="content">胶囊导航</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 20 弹窗 ==================== -->
+<div class="cu-bar bg-white solid-bottom margin-top" id="c-modal">
+  <div class="action"><i class="cuIcon-title text-blue"></i> 20 · 弹窗（cu-modal，点击按钮体验）</div>
+</div>
+<div class="demo-box">
+  <div class="flex flex-wrap">
+    <button class="cu-btn bg-green shadow" data-modal-open="#modal-normal">普通 Modal</button>
+    <button class="cu-btn bg-blue shadow margin-left" data-modal-open="#modal-bottom">底部 Bottom</button>
+    <button class="cu-btn bg-orange shadow margin-left" data-modal-open="#modal-dialog">对话 Dialog</button>
+    <button class="cu-btn bg-pink shadow margin-left" data-modal-open="#modal-image">图片 Image</button>
+    <button class="cu-btn bg-cyan shadow margin-left" data-modal-open="#modal-drawer-left">抽屉左</button>
+    <button class="cu-btn bg-purple shadow margin-left" data-modal-open="#modal-drawer-right">抽屉右</button>
+  </div>
+</div>
+
+<!-- 普通弹窗 -->
+<div class="cu-modal" id="modal-normal">
+  <div class="cu-dialog">
+    <div class="cu-bar bg-white justify-end">
+      <div class="content">Modal 标题</div>
+      <div class="action" data-close><i class="cuIcon-close text-red"></i></div>
+    </div>
+    <div class="padding-xl bg-white">普通居中弹窗内容</div>
+  </div>
+</div>
+
+<!-- 底部弹窗 -->
+<div class="cu-modal bottom-modal" id="modal-bottom">
+  <div class="cu-dialog">
+    <div class="cu-bar bg-white">
+      <div class="action text-blue" data-close>取消</div>
+      <div class="action text-green" data-close>确定</div>
+    </div>
+    <div class="padding-xl bg-white">从底部弹出的窗口内容</div>
+  </div>
+</div>
+
+<!-- 对话弹窗 -->
+<div class="cu-modal" id="modal-dialog">
+  <div class="cu-dialog">
+    <div class="cu-bar bg-white justify-end">
+      <div class="content">对话框</div>
+      <div class="action" data-close><i class="cuIcon-close text-red"></i></div>
+    </div>
+    <div class="padding-xl bg-white">确定要执行这个操作吗？</div>
+    <div class="cu-bar bg-white justify-end">
+      <div class="action">
+        <button class="cu-btn line-green text-green" data-close>取消</button>
+        <button class="cu-btn bg-green margin-left" data-close>确定</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 图片弹窗 -->
+<div class="cu-modal" id="modal-image">
+  <div class="cu-dialog">
+    <div class="bg-img" style="background-image:url('https://ossweb-img.qq.com/images/lol/web201310/skin/big91012.jpg');height:200px;">
+      <div class="cu-bar justify-end text-white">
+        <div class="action" data-close><i class="cuIcon-close"></i></div>
+      </div>
+    </div>
+    <div class="cu-bar bg-white">
+      <div class="action margin-0 flex-sub solid-left" data-close>我知道了</div>
+    </div>
+  </div>
+</div>
+
+<!-- 侧边抽屉（左） -->
+<div class="cu-modal drawer-modal justify-start" id="modal-drawer-left">
+  <div class="cu-dialog basis-lg">
+    <div class="cu-list menu text-left">
+      <div class="cu-item arrow"><div class="content"><i class="cuIcon-github text-grey"></i><span class="margin-left-sm">Item 1</span></div></div>
+      <div class="cu-item arrow"><div class="content"><i class="cuIcon-github text-grey"></i><span class="margin-left-sm">Item 2</span></div></div>
+      <div class="cu-item arrow"><div class="content"><i class="cuIcon-github text-grey"></i><span class="margin-left-sm">Item 3</span></div></div>
+      <div class="cu-item arrow"><div class="content"><i class="cuIcon-github text-grey"></i><span class="margin-left-sm">Item 4</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 侧边抽屉（右） -->
+<div class="cu-modal drawer-modal justify-end" id="modal-drawer-right">
+  <div class="cu-dialog basis-lg">
+    <div class="cu-list menu text-left">
+      <div class="cu-item arrow"><div class="content"><i class="cuIcon-cart text-grey"></i><span class="margin-left-sm">购物车</span></div></div>
+      <div class="cu-item arrow"><div class="content"><i class="cuIcon-shop text-grey"></i><span class="margin-left-sm">店铺</span></div></div>
+      <div class="cu-item arrow"><div class="content"><i class="cuIcon-people text-grey"></i><span class="margin-left-sm">个人中心</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 21 动画 ==================== -->
+<div class="cu-bar bg-white solid-bottom margin-top" id="c-anim">
+  <div class="action"><i class="cuIcon-title text-blue"></i> 21 · 动画（animation.css，点击按钮触发）</div>
+</div>
+<div class="bg-white padding">
+  <div class="flex flex-wrap">
+    <button class="cu-btn line-blue" data-anim="fade">fade</button>
+    <button class="cu-btn line-blue margin-left" data-anim="scale-up">scale-up</button>
+    <button class="cu-btn line-blue margin-left" data-anim="scale-down">scale-down</button>
+    <button class="cu-btn line-blue margin-left" data-anim="slide-top">slide-top</button>
+    <button class="cu-btn line-blue margin-left" data-anim="slide-bottom">slide-bottom</button>
+    <button class="cu-btn line-blue margin-left" data-anim="slide-left">slide-left</button>
+    <button class="cu-btn line-blue margin-left" data-anim="slide-right">slide-right</button>
+    <button class="cu-btn line-red margin-left" data-anim="shake">shake</button>
+  </div>
+  <div class="anim-target bg-gradual-blue" id="anim-target"></div>
+  <p class="demo-note">gif-white / gif-black 为加载图片样式类（需配合雪碧图帧动画），此处从略。</p>
+</div>
+
+<!-- ==================== 页脚 ==================== -->
+<div class="padding text-center text-grey text-sm margin-top margin-bottom">
+  color-ui · ColorUI 多端 npm 包 —— Web 端基于构建期转换（rpx→px / page→:root / 标签映射）
+</div>
+
+<script>
+(function () {
+  // 弹窗控制：等价于小程序 demo 的 showModal / hideModal（class 切换）
+  document.addEventListener('click', function (e) {
+    var opener = e.target.closest('[data-modal-open]');
+    if (opener) {
+      var m = document.querySelector(opener.getAttribute('data-modal-open'));
+      if (m) m.classList.add('show');
+      return;
+    }
+    var modal = e.target.closest('.cu-modal');
+    if (modal) {
+      // 点击遮罩或 [data-close] 元素关闭；cu-dialog 内部点击不冒泡关闭（等价 catchtap）
+      if (!e.target.closest('.cu-dialog') || e.target.closest('[data-close]')) {
+        modal.classList.remove('show');
+      }
+    }
+  });
+
+  // 动画触发：添加 animation-* 类，动画结束后移除以便重复触发
+  var ANIMS = ['fade', 'scale-up', 'scale-down', 'slide-top', 'slide-bottom', 'slide-left', 'slide-right', 'shake']
+    .map(function (n) { return 'animation-' + n; });
+  var target = document.getElementById('anim-target');
+  document.querySelectorAll('[data-anim]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      ANIMS.forEach(function (c) { target.classList.remove(c); });
+      void target.offsetWidth; // 强制 reflow，重启动画
+      target.classList.add('animation-' + btn.getAttribute('data-anim'));
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

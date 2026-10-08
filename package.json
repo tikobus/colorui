@@ -1,0 +1,56 @@
+{
+  "name": "color-ui",
+  "version": "2.1.6",
+  "description": "ColorUI CSS 组件库 · 微信小程序 / uni-app / Web 多端 npm 包（fork of ColorUI）",
+  "keywords": [
+    "colorui",
+    "color-ui",
+    "css",
+    "ui",
+    "wechat",
+    "weixin",
+    "miniprogram",
+    "uniapp",
+    "components"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tikobus/colorui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tikobus/colorui/issues"
+  },
+  "homepage": "https://github.com/tikobus/colorui#readme",
+  "main": "dist/color-ui.css",
+  "style": "dist/color-ui.css",
+  "sideEffects": [
+    "*.css"
+  ],
+  "miniprogram": "dist/mp",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "exports": {
+    ".": "./dist/color-ui.css",
+    "./main": "./dist/main.css",
+    "./icon": "./dist/icon.css",
+    "./animation": "./dist/animation.css",
+    "./mp/*": "./dist/mp/*",
+    "./uniapp/*": "./dist/uniapp/*",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "node scripts/build.js",
+    "prepublishOnly": "npm run build",
+    "verify": "npm run build && npm pack --dry-run"
+  },
+  "devDependencies": {
+    "cssnano": "^7.0.0",
+    "postcss": "^8.4.0",
+    "postcss-selector-parser": "^6.0.0"
+  }
+}

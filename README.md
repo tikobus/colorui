@@ -1,148 +1,167 @@
+# ColorUI for npm (`color-ui`)
 
-## 前言
-ColorUI是一个css库！！！在你引入样式后可以根据class来调用组件，一些含有交互的操作我也有简单写，可以为你开发提供一些思路。
+> ColorUI 是一个 css 库！引入样式后根据 class 调用组件。本包将其改造为标准 npm 包，**一个包覆盖 Web / 微信小程序 / uni-app 三端**。
+>
+> Fork 自 [weilanwl/ColorUI](https://github.com/welanwl/ColorUI)，感谢原作者 [文晓港](https://github.com/weilanwl)。样式源码（`src/mp`、`src/uniapp`）保持上游原样镜像，所有 Web 适配在构建期完成。
 
-## 使用UniApp开发
-### 开始
-下载源码解压获得`/Colorui-UniApp`文件夹，复制目录下的 `/colorui` 文件夹到你的项目根目录
+## 安装
 
-`App.vue` 引入关键Css `main.css` `icon.css`
-```css
-<style>
-@import "colorui/main.css";
-@import "colorui/icon.css";
-@import "app.css"; /* 你的项目css */
-....
-</style>
+```bash
+npm i color-ui
+# 或
+pnpm add color-ui / yarn add color-ui
 ```
 
-### 使用自定义导航栏
-导航栏作为常用组件有做简单封装，当然你也可以直接复制代码结构自己修改，达到个性化目的。
+## Web 使用（Vue / React / 纯 HTML）
 
-`App.vue` 获得系统信息
+构建期已自动完成 Web 适配：`rpx → px`（750 设计稿 ÷2）、小程序标签映射（`view→div`、`text→span`、`image→img`、`navigator→a`）、`page` 拆分为 `:root` + `body`、图标字体 URL https 化。
+
 ```js
-onLaunch: function() {
-  uni.getSystemInfo({
-    success: function(e) {
-      // #ifndef MP
-      Vue.prototype.StatusBar = e.statusBarHeight;
-      if (e.platform == 'android') {
-        Vue.prototype.CustomBar = e.statusBarHeight + 50;
-      } else {
-        Vue.prototype.CustomBar = e.statusBarHeight + 45;
-      };
-      // #endif
-      // #ifdef MP-WEIXIN
-      Vue.prototype.StatusBar = e.statusBarHeight;
-      let custom = wx.getMenuButtonBoundingClientRect();
-      Vue.prototype.Custom = custom;
-      Vue.prototype.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
-      // #endif		
-      // #ifdef MP-ALIPAY
-      Vue.prototype.StatusBar = e.statusBarHeight;
-      Vue.prototype.CustomBar = e.statusBarHeight + e.titleBarHeight;
-      // #endif
-    }
-  })
-},
+// 打包器（Vue / React / Vite / webpack）
+import 'color-ui'            // 完整版 = main + icon + animation（等价 import 'color-ui/css'）
+import 'color-ui/main'       // 仅主样式
+import 'color-ui/icon'       // 仅图标字体
+import 'color-ui/animation'  // 仅动画
 ```
 
-`pages.json` 配置取消系统导航栏
-```json
-"globalStyle": {
-  "navigationStyle": "custom"
-},
-```
-复制代码结构可以直接使用，注意全局变量的获取。
-
-使用封装,在`main.js` 引入 `cu-custom` 组件。
-```
-import cuCustom from './colorui/components/cu-custom.vue'
-Vue.component('cu-custom',cuCustom)
-```
-
-`page.vue` 页面可以直接调用了
 ```html
-<cu-custom bgColor="bg-gradual-blue" :isBack="true">
-  <block slot="backText">返回</block>
-  <block slot="content">导航栏</block>
-</cu-custom>
+<!-- 纯 HTML / CDN（jsDelivr） -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/color-ui/dist/color-ui.min.css">
 ```
-| 参数       | 作用   |类型    |  默认值 |
-| --------   | :----:  |:----:  | :----:  |
-| bgColor    | 背景颜色类名 |String  |   ''    |
-| isBack     | 是否开启返回 | Boolean |   false |
-| bgImage    | 背景图片路径 | String  |  ''     |
 
-| slot块       | 作用   |
-| --------   | :----:  |
-| backText    | 返回时的文字 | 
-| content     | 中间区域 | 
-| right    | 右侧区域(小程序端可使用范围很窄！)  | 
+主题色定制（55 个 CSS 变量，覆盖即可）：
 
-## 使用原生小程序开发
-### 从现有项目开始 
-下载源码解压获得`/demo`，复制目录下的 `/colorui` 文件夹到你的项目根目录
-
-`App.wxss` 引入关键Css `main.wxss` `icon.wxss`
 ```css
-@import "colorui/main.wxss";
-@import "colorui/icon.wxss";
-@import "app.css"; /* 你的项目css */
-....
+:root {
+  --red: #e54d42;
+  --blue: #0081ff;
+  /* ... */
+}
 ```
 
-### 从新项目开始
-下载源码解压获得`/template`，复制`/template`并重命名为你的项目，导入到小程序开发工具既可以开始你的新项目了
+> 注意：基础字号设置在 `body`（`font-size: 14px`），不会污染你的 rem 基准。
 
-### 使用自定义导航栏
-导航栏作为常用组件有做简单封装，当然你也可以直接复制代码结构自己修改，达到个性化目的。
+## 微信小程序使用
 
-`App.js` 获得系统信息
+`package.json` 已声明 `"miniprogram": "dist/mp"`，支持小程序 npm：
+
+1. 在小程序工程根目录 `npm i color-ui`
+2. 微信开发者工具 → 工具 → 构建 npm
+3. `app.wxss` 引入样式：
+
+```css
+@import "/miniprogram_npm/color-ui/main.wxss";
+@import "/miniprogram_npm/color-ui/icon.wxss";
+```
+
+自定义导航栏组件，`app.json` 全局注册：
+
+```json
+"window": { "navigationStyle": "custom" },
+"usingComponents": { "cu-custom": "color-ui/components/cu-custom" }
+```
+
+`App.js` 获得系统信息：
+
 ```js
 onLaunch: function() {
   wx.getSystemInfo({
     success: e => {
       this.globalData.StatusBar = e.statusBarHeight;
       let custom = wx.getMenuButtonBoundingClientRect();
-      this.globalData.Custom = custom;  
+      this.globalData.Custom = custom;
       this.globalData.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
     }
   })
 },
 ```
 
-`App.json` 配置取消系统导航栏,并全局引入组件
-```json
-"window": {
-  "navigationStyle": "custom"
-},
-"usingComponents": {
-  "cu-custom":"/colorui/components/cu-custom"
-}
-```
+页面直接调用：
 
-`page.wxml` 页面可以直接调用了
 ```html
 <cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
   <view slot="backText">返回</view>
   <view slot="content">导航栏</view>
 </cu-custom>
+```
+
+| 参数 | 作用 | 类型 | 默认值 |
+| --- | :----: | :----: | :----: |
+| bgColor | 背景颜色类名 | String | '' |
+| isBack | 是否开启返回 | Boolean | false |
+| isCustom | 是否开启左侧胶囊 | Boolean | false |
+| bgImage | 背景图片路径 | String | '' |
+
+| slot 块 | 作用 |
+| --- | :----: |
+| backText | 返回时的文字 |
+| content | 中间区域 |
+| right | 右侧区域（小程序端可使用范围很窄！） |
+
+## uni-app 使用
+
+```css
+/* App.vue */
+<style>
+@import "color-ui/uniapp/main.css";
+@import "color-ui/uniapp/icon.css";
+</style>
+```
+
+注册导航栏组件：
+
+```js
+// main.js
+import cuCustom from 'color-ui/uniapp/components/cu-custom.vue'
+Vue.component('cu-custom', cuCustom)
+```
+
+```html
+<cu-custom bgColor="bg-gradual-blue" :isBack="true">
+  <block slot="backText">返回</block>
+  <block slot="content">导航栏</block>
+</cu-custom>
+```
+
+| 参数 | 作用 | 类型 | 默认值 |
+| --- | :----: | :----: | :----: |
+| bgColor | 背景颜色类名 | String | '' |
+| isBack | 是否开启返回 | Boolean | false |
+| bgImage | 背景图片路径 | String | '' |
+
+> 系统信息注入（`StatusBar`/`CustomBar`）与取消系统导航栏配置，参考上游 [ColorUI README](https://github.com/weilanwl/ColorUI)。
+
+## 目录结构
 
 ```
-| 参数       | 作用   |类型    |  默认值 |
-| --------   |:----:  |:----:  | :----:  |
-| bgColor    | 背景颜色类名 |String  |   ''    |
-| isBack     | 是否开启返回 | Boolean |   false |
-| isCustom   | 是否开启左侧胶囊 | Boolean |   false |
-| bgImage    | 背景图片路径 | String  |  ''     |
+├── src/            样式真源（上游原样镜像，不发布）
+│   ├── mp/         微信小程序版（.wxss + cu-custom 组件）
+│   ├── uniapp/     uni-app 版（.css + cu-custom.vue）
+│   └── web/        Web 增量补丁（overrides.css，可选）
+├── dist/           构建产物（发布内容）
+│   ├── color-ui.css / .min.css      Web 合并入口
+│   ├── main|icon|animation.css      Web 分模块
+│   ├── mp/                           小程序原版（miniprogram 字段指向）
+│   └── uniapp/                       uni-app 原版
+├── examples/       示例工程（miniprogram-demo / miniprogram-template / uniapp / web）
+└── scripts/build.js  构建脚本
+```
 
-| slot块       | 作用   |
-| --------   | :----:  |
-| backText    | 返回时的文字 | 
-| content     | 中间区域 | 
-| right    | 右侧区域(小程序端可使用范围很窄！)  | 
+## 开发
 
-[MIT](https://opensource.org/licenses/MIT)
+```bash
+npm install
+npm run build    # 构建 dist/ 并回填 examples/
+npm run verify   # build + npm pack --dry-run
+```
 
-Copyright (c) 2020-present, XiaoGang Wen
+上游同步：覆盖 `src/mp`、`src/uniapp` 后重跑 `npm run build` 即可，勿手改 `dist/`。
+
+## Known Limitations（Web 端）
+
+- `switch` / `checkbox` / `radio` / `picker` 的部分皮肤依赖微信原生组件内部类（`.wx-*`），Web 上为惰性规则（不生效、无副作用）
+- 奇数 rpx 转换为 `0.5px` hairline 边框，需现代浏览器（Chrome 49+ / Safari 9.2+ / Firefox 49+）
+
+## License
+
+[MIT](./LICENSE) — Copyright (c) 2018-present weilanwl（原始项目），Modifications Copyright (c) 2026 tikobus
